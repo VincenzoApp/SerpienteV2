@@ -162,7 +162,7 @@
         // Costanti di gioco
         const SNAKE_SPEED = 10;
         const GRID_COLS = 20;  // 20 colonne orizzontali
-        const GRID_ROWS = 26;   // 26 righe verticali
+        const GRID_ROWS = 24;   // 24 righe verticali
         
         // Variabili di stato
         let box, canvasWidth, canvasHeight;
@@ -194,7 +194,7 @@
             const boxHeight = Math.floor(containerHeight / GRID_ROWS);
             box = Math.min(boxWidth, boxHeight);
             
-            // Ricalcola le dimensioni del canvas mantenendo il rapporto 20:26
+            // Ricalcola le dimensioni del canvas mantenendo il rapporto 20:24
             canvas.width = box * GRID_COLS;
             canvas.height = box * GRID_ROWS;
             
