@@ -6,7 +6,10 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#111">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Snake Game</title>
+    <link rel="manifest" href="manifest.json">
     <style>
         * {
             margin: 0;
@@ -18,11 +21,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 90vh;
+            height: 100vh;
             background-color: #111;
             font-family: Arial, sans-serif;
             overflow: hidden;
             touch-action: none;
+            -webkit-tap-highlight-color: transparent;
         }
         
         #game-container {
@@ -90,7 +94,7 @@
             background-color: #45a049;
         }
         
-        #menu-btn {
+        #menu-btn, #start-menu-btn {
             margin-top: 15px;
             padding: 15px 30px;
             font-size: 24px;
@@ -103,7 +107,7 @@
             transition: background-color 0.3s;
         }
         
-        #menu-btn:hover {
+        #menu-btn:hover, #start-menu-btn:hover {
             background-color: #0b7dda;
         }
         
@@ -166,6 +170,7 @@
         <div id="start-screen">
             <h1 id="start-title">SNAKE</h1>
             <button id="start-btn">Inizia</button>
+            <button id="start-menu-btn">Vuelve al Menú</button>
         </div>
     </div>
 
@@ -178,6 +183,7 @@
         const gameOverDisplay = document.getElementById('game-over');
         const restartBtn = document.getElementById('restart-btn');
         const menuBtn = document.getElementById('menu-btn');
+        const startMenuBtn = document.getElementById('start-menu-btn');
         const startScreen = document.getElementById('start-screen');
         const startBtn = document.getElementById('start-btn');
         
@@ -748,6 +754,10 @@
             window.location.href = 'https://vincenzoapp.github.io/Test03/index.html';
         });
         
+        startMenuBtn.addEventListener('click', () => {
+            window.location.href = 'https://vincenzoapp.github.io/Test03/index.html';
+        });
+        
         // Ridimensionamento finestra
         window.addEventListener('resize', () => {
             if (gameStarted) {
@@ -757,6 +767,33 @@
         
         // Mostra schermata iniziale
         startScreen.style.display = 'flex';
+        
+        // PWA Fullscreen setup
+        function setupPWA() {
+            // Prevent default behavior on touch events
+            document.addEventListener('touchmove', function(e) {
+                if (e.target === canvas) {
+                    e.preventDefault();
+                }
+            }, { passive: false });
+            
+            // iOS specific fullscreen setup
+            if (window.navigator.standalone) {
+                document.documentElement.style.height = '100%';
+                document.body.style.height = '100%';
+                document.body.style.overflow = 'hidden';
+            }
+            
+            // Android Chrome fullscreen setup
+            if (window.matchMedia('(display-mode: standalone)').matches) {
+                document.documentElement.style.height = '100%';
+                document.body.style.height = '100%';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        // Run PWA setup
+        setupPWA();
     </script>
 </body>
 </html>
