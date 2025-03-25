@@ -90,6 +90,23 @@
             background-color: #45a049;
         }
         
+        #menu-btn {
+            margin-top: 15px;
+            padding: 15px 30px;
+            font-size: 24px;
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(33, 150, 243, 0.5);
+            transition: background-color 0.3s;
+        }
+        
+        #menu-btn:hover {
+            background-color: #0b7dda;
+        }
+        
         #start-screen {
             position: absolute;
             top: 0;
@@ -144,6 +161,7 @@
         <div id="game-over">
             GAME OVER<br>
             <button id="restart-btn">Ricomincia</button>
+            <button id="menu-btn">Vuelve al Menú</button>
         </div>
         <div id="start-screen">
             <h1 id="start-title">SNAKE</h1>
@@ -159,6 +177,7 @@
         const highscoreDisplay = document.getElementById('highscore');
         const gameOverDisplay = document.getElementById('game-over');
         const restartBtn = document.getElementById('restart-btn');
+        const menuBtn = document.getElementById('menu-btn');
         const startScreen = document.getElementById('start-screen');
         const startBtn = document.getElementById('start-btn');
         
@@ -723,6 +742,10 @@
         restartBtn.addEventListener('click', () => {
             hideGameOver();
             initGame();
+        });
+        
+        menuBtn.addEventListener('click', () => {
+            window.location.href = 'https://vincenzoapp.github.io/Test03/index.html';
         });
         
         // Ridimensionamento finestra
