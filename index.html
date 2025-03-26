@@ -476,7 +476,8 @@
                 score++;
                 scoreChanged = true;
                 food = createFood();
-                if (Math.random() < INSECT_SPAWN_CHANCE) {
+                // Only spawn new special food if there isn't one already
+                if (!specialFood && !butterfly && Math.random() < INSECT_SPAWN_CHANCE) {
                     specialFood = createSpecialFood();
                 }
             } 
